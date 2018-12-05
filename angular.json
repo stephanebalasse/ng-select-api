@@ -121,6 +121,76 @@
           }
         }
       }
+    },
+    "my-shared": {
+      "root": "projects/my-shared",
+      "sourceRoot": "projects/my-shared/src",
+      "projectType": "library",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/my-shared/tsconfig.lib.json",
+            "project": "projects/my-shared/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/my-shared/src/test.ts",
+            "tsConfig": "projects/my-shared/tsconfig.spec.json",
+            "karmaConfig": "projects/my-shared/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/my-shared/tsconfig.lib.json",
+              "projects/my-shared/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "select-api": {
+      "root": "projects/select-api",
+      "sourceRoot": "projects/select-api/src",
+      "projectType": "library",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/select-api/tsconfig.lib.json",
+            "project": "projects/select-api/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/select-api/src/test.ts",
+            "tsConfig": "projects/select-api/tsconfig.spec.json",
+            "karmaConfig": "projects/select-api/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/select-api/tsconfig.lib.json",
+              "projects/select-api/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "select-component-api"

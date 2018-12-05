@@ -1,0 +1,6 @@
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+  <button type="submit" [disabled]="!profileForm.valid">Submit</button>
+   <label for="">
+    <app-select-api formControlName="mysel" class="custom" placeholder="Selectionnez votre classe" [mapping]="mapping"></app-select-api>
+  </label>
+</form>
