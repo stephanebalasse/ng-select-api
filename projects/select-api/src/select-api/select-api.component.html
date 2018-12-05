@@ -1,5 +1,3 @@
-
-<mat-select [placeholder]="placeholder"  [(value)]="value"  [disabled]="disabled">
-  <mat-option value="Victor Hugo">Victor Hugo</mat-option>
-  <mat-option value="Jules Verne">Jules Vernes</mat-option>
+<mat-select [placeholder]="placeholder" [(value)]="value" [disabled]="disabled">
+  <mat-option *ngFor="let data of datas" value="data | mappingPipe:'id':mapping">{{data | mappingPipe:'label':mapping}} <span class="mat-hint mat-caption" >{{data | mappingPipe:'description':mapping}}</span></mat-option>
 </mat-select>

@@ -4,10 +4,12 @@ import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-b
 import {SelectApiComponent} from './select-api.component';
 
 export {SelectApiComponent} from './select-api.component';
+import {MappingPipe} from './mapping.pipe';
 
 @NgModule({
   imports: [MatSelectModule, BrowserAnimationsModule, NoopAnimationsModule],
-  declarations: [SelectApiComponent],
+  declarations: [SelectApiComponent, MappingPipe],
   exports: [SelectApiComponent]
 })
-export class SelectApiModule {}
+export class SelectApiModule {
+}

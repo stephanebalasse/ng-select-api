@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
 import {Mapping} from '../../../projects/select-api/src/select-api/select-api.component';
 
@@ -9,10 +9,46 @@ import {Mapping} from '../../../projects/select-api/src/select-api/select-api.co
 })
 export class ProfileEditorComponent {
   profileForm = new FormGroup({
-    mysel: new FormControl({ disabled: false}, Validators.required),
+    mysel: new FormControl({disabled: false}, Validators.required),
   });
 
-  public mapping: Mapping = {id: 'id', value: 'myValue', description: 'description'};
+  public mapping: Mapping = {id: 'id', label: 'label', description: 'description'};
+
+  public datas = [
+    {
+      id: 'PS',
+      label: 'PS',
+      description: 'PS'
+    },
+    {
+      id: 'CP',
+      label: 'CP',
+      description: 'Court préparatoire'
+    },
+    {
+      id: 'CE1',
+      label: 'CE1',
+      description: 'Classe élémentaire 1'
+    },
+  ];
+  public mappingCustom: Mapping = {id: 'id', label: 'value', description: 'description'};
+    public datasCustom = [
+    {
+      id: 'PS',
+      value: 'PS',
+      description: 'PS'
+    },
+    {
+      id: 'CP',
+      value: 'CP',
+      description: 'Court préparatoire'
+    },
+    {
+      id: 'CE1',
+      value: 'CE1',
+      description: 'Classe élémentaire 1'
+    },
+  ];
 
   constructor() {
 

@@ -3,7 +3,7 @@ import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 
 export interface Mapping {
   id: string;
-  value: string;
+  label: string;
   description: string;
 }
 
@@ -27,14 +27,10 @@ export class SelectApiComponent implements OnInit, ControlValueAccessor {
 
   @Input() placeholder: string;
   @Input() style: string;
-  private _mapping: Mapping ;
+  private _mapping: Mapping;
 
-  @Input()
-  set mapping(mapp: Mapping) {
-    this._mapping = mapp;
-  }
-  get mapping() { return this._mapping ; }
-
+  @Input() mapping: Mapping;
+  @Input() datas: any[];
 
 
   constructor() {
@@ -42,7 +38,10 @@ export class SelectApiComponent implements OnInit, ControlValueAccessor {
   }
 
   ngOnInit() {
-    console.log(this.mapping.value);
+    if (!this.mapping) {
+      this.mapping = {id: 'id', label: 'label', description: 'description'};
+    }
+    console.log(this.mapping.label);
   }
 
   get disabled(): boolean {
