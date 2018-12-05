@@ -1,5 +1,8 @@
 import {Component, forwardRef, Input, OnInit, ViewEncapsulation} from '@angular/core';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
+import {SelectApiService} from './select-api.service';
+
+
 
 export interface Mapping {
   id: string;
@@ -16,7 +19,8 @@ export interface Mapping {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => SelectApiComponent),
       multi: true
-    }
+    },
+    SelectApiService
   ]
 })
 export class SelectApiComponent implements OnInit, ControlValueAccessor {
@@ -24,24 +28,33 @@ export class SelectApiComponent implements OnInit, ControlValueAccessor {
   // value of the select
   private _value: any;
   private _disabled = false;
+  public datas: any[] = [];
+  public loading = true;
 
   @Input() placeholder: string;
-  @Input() style: string;
-  private _mapping: Mapping;
-
   @Input() mapping: Mapping;
-  @Input() datas: any[];
+  @Input() inputs: string | any[];
+  @Input() url: string;
 
 
-  constructor() {
-
+  constructor(private selectApi: SelectApiService) {
   }
 
   ngOnInit() {
-    if (!this.mapping) {
+    if (!this.mapping && !this.url) {
       this.mapping = {id: 'id', label: 'label', description: 'description'};
     }
-    console.log(this.mapping.label);
+    if (typeof this.inputs === 'string') {
+      this.datas = [];
+      this.loading = true;
+      this.selectApi.get(this.inputs).subscribe((datas) => {
+        this.datas = datas;
+        this.loading = false;
+      });
+    } else {
+      this.datas = this.inputs;
+      this.loading = false;
+    }
   }
 
   get disabled(): boolean {

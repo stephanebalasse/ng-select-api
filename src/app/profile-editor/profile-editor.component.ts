@@ -29,10 +29,10 @@ export class ProfileEditorComponent {
       id: 'CE1',
       label: 'CE1',
       description: 'Classe élémentaire 1'
-    },
+    }
   ];
   public mappingCustom: Mapping = {id: 'id', label: 'value', description: 'description'};
-    public datasCustom = [
+  public datasCustom = [
     {
       id: 'PS',
       value: 'PS',
@@ -49,6 +49,9 @@ export class ProfileEditorComponent {
       description: 'Classe élémentaire 1'
     },
   ];
+
+  public mappingUrl: Mapping = {id: 'id', label: 'title', description: 'description'};
+  public datasUrl = 'https://jsonplaceholder.typicode.com/todos';
 
   constructor() {
 

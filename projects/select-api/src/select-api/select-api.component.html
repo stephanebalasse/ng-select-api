@@ -1,3 +1,8 @@
 <mat-select [placeholder]="placeholder" [(value)]="value" [disabled]="disabled">
-  <mat-option *ngFor="let data of datas" value="data | mappingPipe:'id':mapping">{{data | mappingPipe:'label':mapping}} <span class="mat-hint mat-caption" >{{data | mappingPipe:'description':mapping}}</span></mat-option>
+  <mat-option *ngIf="!datas">Aucune donnée</mat-option>
+  <mat-option *ngIf="loading">Chargement...</mat-option>
+  <mat-option [hidden]="loading" *ngFor="let data of datas"
+              [value]="data | mappingPipe:'id':mapping">{{data | mappingPipe:'label':mapping}}
+              <span class="mat-hint mat-caption">{{data | mappingPipe:'description':mapping}}</span>
+  </mat-option>
 </mat-select>
