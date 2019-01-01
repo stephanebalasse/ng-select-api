@@ -4,12 +4,14 @@ import {Mapping} from '../../../projects/select-api/src/select-api/select-api.co
 
 @Component({
   selector: 'app-profile-editor',
-  templateUrl: './profile-editor.component.html',
-  styleUrls: ['./profile-editor.component.css']
+  templateUrl: './demo.component.html',
+  styleUrls: ['./demo.component.css']
 })
-export class ProfileEditorComponent {
+export class DemoComponent {
   profileForm = new FormGroup({
-    mysel: new FormControl({disabled: false}, Validators.required),
+    selectData: new FormControl('', Validators.required),
+    selectDataCustom: new FormControl(''),
+    selectDataUrl: new FormControl('', Validators.required),
   });
 
   public mapping: Mapping = {id: 'id', label: 'label', description: 'description'};
@@ -59,7 +61,7 @@ export class ProfileEditorComponent {
 
   onSubmit() {
     // TODO: Use EventEmitter with form value
-    console.warn(this.profileForm.value);
+   alert(JSON.stringify(this.profileForm.value));
 
   }
 

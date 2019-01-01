@@ -1,0 +1,34 @@
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()" style="display: flex;flex-direction: column; height: 350px;align-self: flex-start; justify-content: space-around">
+
+  <div>
+    <label style="width: 100%;" for="classic">Data avec les bons attributs</label>
+    <app-select-api formControlName="selectData"
+                    id="classic"
+                    class="custom"
+                    placeholder="Selectionnez votre classe"
+                    [inputs]="datas"
+                        [mapping]="mapping">
+    </app-select-api>
+  </div>
+  <div><label style="width: 100%;" for="custom">Data avec un mapping custom</label>
+  <app-select-api formControlName="selectDataCustom"
+                  class="custom"
+                  id="custom"
+                  placeholder="Selectionnez votre classe"
+                  [inputs]="datasCustom"
+                  withBlank="true"
+                  [mapping]="mappingCustom">
+  </app-select-api>
+  </div>
+  <div><label style="width: 100%;" for="url">Data depuis une url avec un mapping custom</label>
+  <app-select-api formControlName="selectDataUrl"
+                  class="custom"
+                  id="url"
+                  placeholder="Selectionnez votre classe"
+                  [inputs]="datasUrl"
+                  [mapping]="mappingUrl">
+  </app-select-api>
+  </div>
+  <button type="submit" [disabled]="!profileForm.valid">Submit</button>
+
+</form>

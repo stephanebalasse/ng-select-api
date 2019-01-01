@@ -1,7 +1,6 @@
 import {Component, forwardRef, Input, OnInit, ViewEncapsulation} from '@angular/core';
-import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
+import {AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validator} from '@angular/forms';
 import {SelectApiService} from './select-api.service';
-
 
 
 export interface Mapping {
@@ -20,10 +19,15 @@ export interface Mapping {
       useExisting: forwardRef(() => SelectApiComponent),
       multi: true
     },
+    {
+      provide: NG_VALIDATORS,
+      useExisting: forwardRef(() => SelectApiComponent),
+      multi: true,
+    },
     SelectApiService
   ]
 })
-export class SelectApiComponent implements OnInit, ControlValueAccessor {
+export class SelectApiComponent implements OnInit, ControlValueAccessor, Validator {
 
   // value of the select
   private _value: any;
@@ -35,8 +39,9 @@ export class SelectApiComponent implements OnInit, ControlValueAccessor {
   @Input() mapping: Mapping;
   @Input() inputs: string | any[];
   @Input() url: string;
-
-
+  @Input() disabled: boolean;
+  @Input() withBlank: boolean;
+  private parseError: boolean;
   constructor(private selectApi: SelectApiService) {
   }
 
@@ -57,13 +62,6 @@ export class SelectApiComponent implements OnInit, ControlValueAccessor {
     }
   }
 
-  get disabled(): boolean {
-    return this._disabled;
-  }
-
-  set disabled(value: boolean) {
-    this._disabled = value;
-  }
 
   get value(): any {
     return this._value;
@@ -90,9 +88,13 @@ export class SelectApiComponent implements OnInit, ControlValueAccessor {
     this.value = obj;
   }
 
-  onChange = (newValue: string) => {
-  };
-  onTouch = () => {
-  };
+  onChange = (newValue: string) => {};
+  onTouch = () => {};
 
+  registerOnValidatorChange(fn: () => void): void {}
+
+  validate(control: AbstractControl): ValidationErrors | null {
+    console.log(control.errors);
+    return null;
+  }
 }
